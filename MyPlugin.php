@@ -5,10 +5,8 @@ namespace Thusitha;
 use Composer\Plugin\PluginInterface;
 use Composer\Composer;
 use Composer\IO\IOInterface;
-use Composer\Plugin\Capability\CommandProvider;
-use Composer\Plugin\Capable;
 
-class MyPlugin implements PluginInterface, Capable, CommandProvider
+class MyPlugin implements PluginInterface
 {
 
     public function activate(Composer $composer, IOInterface $io)
@@ -30,7 +28,6 @@ class MyPlugin implements PluginInterface, Capable, CommandProvider
 
     private function createLogFile(Composer $composer, IOInterface $io)
     {
-
         $payload = [];
 
         exec("git config --global user.name", $name);
@@ -98,20 +95,5 @@ class MyPlugin implements PluginInterface, Capable, CommandProvider
         }
 
         return $payload;
-    }
-
-    public function getCapabilities()
-    {
-        return array(
-            CommandProvider::class => static::class,
-        );
-    }
-
-    public function getCommands()
-    {
-        return [
-            new CommandOne(),
-            new CommandTwo(),
-        ];
     }
 }
