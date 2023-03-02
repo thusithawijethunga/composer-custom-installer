@@ -1,2 +1,4 @@
 /custom-installer/vendor/
 /sample-app/vendor/
+/vendor/composer
+/vendor/
